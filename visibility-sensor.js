@@ -231,6 +231,11 @@ module.exports = createReactClass({
 
     rect = el.getBoundingClientRect();
 
+    // @see https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+    if (rect.width === 0 && rect.height === 0) {
+      return this.state;
+    }
+
     if (this.props.containment) {
       var containmentDOMRect = this.props.containment.getBoundingClientRect();
       containmentRect = {
